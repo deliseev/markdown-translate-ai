@@ -29,15 +29,6 @@ class MlxClient(APIClient):
                 tokenize=False,
             )
             response = generate(self.model, self.tokenizer, prompt=prompt, verbose=True)
-
-            # self.stats_tracker.record_call(success=True)
-            # self.token_tracker.update(
-            #     "openai",
-            #     self.model_info.name,
-            #     response.usage.prompt_tokens,
-            #     response.usage.completion_tokens
-            # )
-
             return response
 
         except Exception as e:
