@@ -135,6 +135,8 @@ markdown-translate-ai \
   --previous-source ./example/test-file1-en.md
 ```
 
+**Example local translation:**
+
 ```bash
 # To start `translategemma` model server
 uv run mlx_lm.server --model mlx-community/translategemma-4b-it-4bit_immersive-translate
@@ -142,3 +144,5 @@ uv run mlx_lm.server --model mlx-community/translategemma-4b-it-4bit_immersive-t
 # To run translation
 uv run markdown-translate-ai --model mlx example/test-file1-en.md output.ru.md Russian
 ```
+
+Check [translategemma](https://huggingface.co/mlx-community/translategemma-4b-it-4bit_immersive-translate) for info.
