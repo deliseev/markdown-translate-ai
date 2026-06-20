@@ -17,6 +17,11 @@ from markdown_translate_ai.providers.openai import OpenAIClient
 from markdown_translate_ai.providers.anthropic import AnthropicClient
 from markdown_translate_ai.providers.gemini import GeminiClient
 from markdown_translate_ai.providers.deepseek import DeepSeekClient
+from markdown_translate_ai.providers.gemini import GeminiClient
+from markdown_translate_ai.providers.mlx import MlxClient
+from markdown_translate_ai.providers.openai import OpenAIClient
+from markdown_translate_ai.util.statistics import APICallStatistics
+from markdown_translate_ai.util.validator import ConfigValidator
 
 
 class MarkdownProcessor:
@@ -66,6 +71,11 @@ class TranslationPromptFactory:
                     target_lang=target_lang,
                     text=content
                 )
+            case ServiceProvider.MLX:
+                return {
+                    "system": "",
+                    "user": f"<<<source>>>{source_lang}<<<target>>>{target_lang}<<<text>>>{content}",
+                }
             case _:
                 raise ValueError(f"Unsupported provider: {provider}")
 
@@ -105,6 +115,8 @@ class TranslationManager:
             return GeminiClient(self.model_info, self.stats_tracker)
         elif self.model_info.provider == ServiceProvider.DEEPSEEK:
             return DeepSeekClient(self.model_info, self.stats_tracker)
+        elif self.model_info.provider == ServiceProvider.MLX:
+            return MlxClient(self.model_info, self.stats_tracker)
         raise ValueError(f"Unsupported provider: {self.model_info.provider}")
     
     def translate(self, content: str, source_lang: str, target_lang: str) -> str:

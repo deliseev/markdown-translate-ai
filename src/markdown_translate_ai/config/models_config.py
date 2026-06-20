@@ -8,6 +8,7 @@ class ServiceProvider(Enum):
     ANTHROPIC = "anthropic"
     GEMINI = "gemini"
     DEEPSEEK = "deepseek"
+    MLX = "mlx"
 
     @classmethod
     def from_string(cls, value: str) -> 'ServiceProvider':
@@ -166,8 +167,15 @@ class ModelsRegistry:
                 name="deepseek-chat",
                 provider=ServiceProvider.DEEPSEEK,
                 description="DeepSeek Chat",
-                max_tokens=8192
-            )
+                max_tokens=8192,
+            ),
+            # MLX
+            "mlx": ModelInfo(
+                name="mlx",
+                provider=ServiceProvider.MLX,
+                description="MLX Chat",
+                max_tokens=8192,
+            ),
         }
 
     @classmethod
