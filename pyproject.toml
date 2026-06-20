@@ -1,0 +1,18 @@
+[project]
+name = "markdown-translate-ai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "httpx[http2]>=0.28.1",
+    "marko>=2.2.3",
+    "mlx-lm>=0.31.3",
+    "openai>=2.43.0",
+]
+
+[tool.uv]
+package = true
+
+[project.scripts]
+markdown-translate-ai = "markdown_translate_ai.translator:main"
