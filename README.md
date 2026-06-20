@@ -134,3 +134,11 @@ markdown-translate-ai \
   --update-mode \
   --previous-source ./example/test-file1-en.md
 ```
+
+```bash
+# To start `translategemma` model server
+uv run mlx_lm.server --model mlx-community/translategemma-4b-it-4bit_immersive-translate
+
+# To run translation
+uv run markdown-translate-ai --model mlx example/test-file1-en.md output.ru.md Russian
+```
